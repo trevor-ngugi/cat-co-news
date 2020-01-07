@@ -1,18 +1,71 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% if title%}
-    <title>{{title}}</title>
-    {%else%}
-    <title>see headlining news</title>
-    {%endif%}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-</head>
-<body>
-    <h1>hello world</h1>
-</body>
-</html>
+{%extends "base.html"%}
+{%block content%}
+<!-- News jumbotron -->
+<br><br>
+<!-- Jumbotron -->
+<div class="card card-image"
+    style="background-image: url(https://picsum.photos/2560/500?grayscale); background-repeat:no-repeat">
+    <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+        <div class="py-5">
+            <h2 class="h2 text-white animated heartBeat" style="font-family: 'Abril Fatface', cursive;"><i
+                    class="far fa-newspaper"></i> The Newsroom</h2>
+            <h5 class="card-title h5 my-4 py-2">Always be on the know</h5>
+            <p class="mb-4 pb-2 px-md-5 mx-md-5">Get extensive news coverage from a variety of sources and in different
+                categories. Made using the NewsAPI.</p>
+            <a href="https://github.com/collinsmuriuki/newsroom" target="_blank" style="color: #fff;">
+                <button class="btn" style="background-color: #000;"><i class="fab fa-github"></i></i> View
+                    project</button>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Jumbotron -->
+<!-- <form class="mx-auto form-inline md-form form-xs active-cyan-2 mt-2" style="text-align: center; margin-left: 50%; margin-right:50%; width: 50%;">
+    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search News" name="news_query" aria-label="Search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+</form> -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <br>
+            <h4 class="text-center"><strong>News Sources  <i class="fas fa-sort-alpha-down"></i></strong></h4>
+            <div class="list-group list-group-flush">
+                {%for source in sources%}
+                <a href="/source/{{source.id}}" class="list-group-item list-group-item-action">{{source.name}}</a>
+                {%endfor%}
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <br>
+            <h4 class="text-center"><strong>Trending World News  <i class="fas fa-globe-americas"></i></strong></h4>
+            {%for article in top_news%}
+            <div class="jumbotron text-center hoverable p-4">
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 mx-3 my-3">
+                        <div class="view overlay">
+                            <img src="{{article.img}}" class="img-fluid"
+                                alt="Sample image for first version of blog listing">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-md-left ml-3 mt-3">
+                        </a>
+                        <h4 class="h4 mb-4">{{article.title}}</h4>
+                        {%if article.content%}
+                            <p class="font-weight-normal">{{article.content | truncate(120)}}</p>
+                        {%endif%}
+                        <p class="font-weight-normal">by <a><strong>{{article.author}}</strong></a>, {{article.date[:10]}}
+                        </p>
+                        <a href="{{article.url}}" target="_blank" style="color: #fff;">
+                            <button style="background-color: #000;" class="btn">Read More  <i class="fas fa-link"></i></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}

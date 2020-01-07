@@ -1,8 +1,19 @@
 from flask import Flask
-from .config import DevConfig
+from config import config_options
 
-app=Flask(__name__)
+def create_app(config_name):
+    # Creating instance
+    app = Flask(__name__)
 
-app.config.from_object(DevConfig)
+    # Creating the app configurations
+    app.config.from_object(config_options[config_name])
 
-from app import views
+    # Registering the blueprint
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    # Setting config
+    from .requests import configure_requests
+    configure_requests(app)
+
+    return app
