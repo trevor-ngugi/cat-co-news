@@ -1,10 +1,7 @@
 # cat-co-news
 
-
-
-
 ## Author
-[tevor ngugi](https://github.com/trevor-ngugi), 11/10/2019.
+[tevor ngugi](https://github.com/trevor-ngugi), 
 
 ## Versioning
 cat-co-news version 1.0
@@ -51,7 +48,7 @@ Here is a run through of how to set up the application:
     * Open your preferred browser and view the app by opening the link **http://127.0.0.1:5000/**.
 
 ## Known Bugs
-* None present, in case of any, be sure to contact me
+* Not able to deploy to heroku 
 
 ## Technologies Used
 * Python 3.7.4
